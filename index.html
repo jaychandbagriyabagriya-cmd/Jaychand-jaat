@@ -1,0 +1,94 @@
+
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>मेरी पढ़ाई</title>
+<style>
+body{font-family:Arial,sans-serif;background:#eef4ff;margin:0;color:#17305c}
+header{background:#155eef;color:white;text-align:center;padding:25px 10px}
+main{max-width:700px;margin:auto;padding:15px}
+.card{background:white;padding:18px;margin:15px 0;border-radius:12px;box-shadow:0 2px 8px #0001}
+button{background:#155eef;color:white;border:0;border-radius:7px;padding:12px;margin:5px}
+h2{color:#155eef}
+label{display:block;padding:8px}
+</style>
+</head>
+<body>
+<header>
+<h1>📚 मेरी पढ़ाई</h1>
+<p>राजस्थान बोर्ड | कक्षा 10</p>
+</header>
+<main>
+<div class="card">
+<h2>स्वागत है विद्यार्थी!</h2>
+<p>यहाँ पढ़ो, अभ्यास करो और अपनी तैयारी बेहतर बनाओ।</p>
+<button onclick="chapters()">गणित के अध्याय</button>
+<button onclick="test()">ऑनलाइन टेस्ट</button>
+</div>
+<div class="card" id="content">
+<h2>हमारे विषय</h2>
+<p>➗ गणित</p>
+<p>📖 हिंदी</p>
+<p>🔬 विज्ञान</p>
+<p>🌍 सामाजिक विज्ञान</p>
+</div>
+</main>
+<script>
+function chapters(){
+document.getElementById("content").innerHTML=`
+<h2>कक्षा 10 गणित</h2>
+<p>1. वास्तविक संख्याएँ</p>
+<p>2. बहुपद</p>
+<p>3. दो चर वाले रैखिक समीकरण</p>
+<p>4. द्विघात समीकरण</p>
+<p>5. समांतर श्रेढ़ियाँ</p>
+<p>6. त्रिभुज</p>
+<p>7. निर्देशांक ज्यामिति</p>
+<p>8. त्रिकोणमिति</p>
+<p>9. त्रिकोणमिति के अनुप्रयोग</p>
+<p>10. वृत्त</p>
+<p>11. वृत्तों से संबंधित क्षेत्रफल</p>
+<p>12. पृष्ठीय क्षेत्रफल और आयतन</p>
+<p>13. सांख्यिकी</p>
+<p>14. प्रायिकता</p>`;
+}
+const qs=[
+["12 और 18 का HCF?",["3","6","9","12"],1],
+["sin 30° का मान?",["0","1","1/2","√3"],2],
+["2,5,8,11 का सार्व अंतर?",["2","3","4","5"],1],
+["x²−9=0 के मूल?",["3 और −3","3 और 3","9 और 0","1 और 9"],0],
+["tan 45° का मान?",["0","1","2","√3"],1],
+["2,4,6 का माध्य?",["2","3","4","6"],2],
+["7 सेमी त्रिज्या के वृत्त का क्षेत्रफल (π=22/7)?",["44","154","49","22"],1],
+["3 सेमी भुजा वाले घन का आयतन?",["9","18","27","36"],2],
+["निष्पक्ष सिक्के पर चित आने की प्रायिकता?",["0","1/4","1/2","1"],2],
+["x²−5x+6 के शून्यक?",["1 और 6","2 और 3","3 और 5","2 और 5"],1]
+];
+function test(){
+let html="<h2>📝 गणित ऑनलाइन टेस्ट</h2><p>10 प्रश्न, प्रत्येक 1 अंक</p>";
+qs.forEach((q,i)=>{
+html+=`<div><b>${i+1}. ${q[0]}</b>`;
+q[1].forEach((o,j)=>{
+html+=`<label><input type="radio" name="q${i}" value="${j}"> ${o}</label>`;
+});
+html+="</div><hr>";
+});
+html+='<button onclick="score()">टेस्ट जमा करें</button><div id="result"></div>';
+document.getElementById("content").innerHTML=html;
+}
+function score(){
+let n=0,empty=0;
+qs.forEach((q,i)=>{
+let a=document.querySelector('input[name="q'+i+'"]:checked');
+if(!a)empty++;
+else if(Number(a.value)===q[2])n++;
+});
+document.getElementById("result").innerHTML=
+"<h3>आपके अंक: "+n+"/10</h3><h3>प्रतिशत: "+(n*10)+"%</h3><p>बिना उत्तर वाले प्रश्न: "+empty+"</p>";
+}
+</script>
+</body>
+  </html>
+  
