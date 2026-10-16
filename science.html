@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>कक्षा 10 विज्ञान | मेरी पढ़ाई</title>
+<style>
+body{font-family:Arial,sans-serif;background:#f2f7ff;color:#172554;margin:0;line-height:1.7}
+header{background:#152e67;color:white;padding:24px 16px;text-align:center}
+main{max-width:850px;margin:auto;padding:16px}
+.card{background:white;border-radius:12px;padding:16px;margin:12px 0;box-shadow:0 2px 9px #0001}
+button{background:#2457c5;color:white;border:0;border-radius:8px;padding:10px 14px;font-size:16px;cursor:pointer}
+details{padding:8px 0;border-bottom:1px solid #ddd}
+summary{font-weight:bold;cursor:pointer}
+a{color:#2457c5}
+</style>
+</head>
+<body>
+<header><h1>📘 कक्षा 10 विज्ञान</h1><p>RBSE | मेरी पढ़ाई स्मार्ट स्टडी पोर्टल</p></header>
+<main>
+<div class="card"><h2>स्वागत है विद्यार्थी!</h2><p>यहाँ विज्ञान के अध्याय, आसान नोट्स, महत्वपूर्ण प्रश्न और अभ्यास टेस्ट क्रम से तैयार किए जाएँगे।</p><p><b>ध्यान दें:</b> यह अध्याय सूची है। विस्तृत नोट्स और प्रश्न-उत्तर आगे अध्यायवार जोड़े जाएँगे।</p></div>
+<div class="card"><h2>📚 अध्याय सूची</h2><div id="chapters"></div></div>
+<div class="card"><h2>📝 छोटा अभ्यास टेस्ट</h2><form id="quiz">
+<p>1. प्रकाश संश्लेषण में पौधे कौन-सी गैस लेते हैं?</p>
+<label><input type="radio" name="q1" value="a"> ऑक्सीजन</label><br>
+<label><input type="radio" name="q1" value="b"> कार्बन डाइऑक्साइड</label><br>
+<label><input type="radio" name="q1" value="c"> नाइट्रोजन</label><br>
+<p>2. विद्युत धारा की SI इकाई क्या है?</p>
+<label><input type="radio" name="q2" value="a"> एम्पियर</label><br>
+<label><input type="radio" name="q2" value="b"> वोल्ट</label><br>
+<label><input type="radio" name="q2" value="c"> ओम</label><br><br>
+<button type="submit">उत्तर जाँचें</button>
+</form><p id="result"></p></div>
+<p><a href="index.html">← मुख्य वेबसाइट पर वापस जाएँ</a></p>
+</main>
+<script>
+const chapters=[
+["1","रासायनिक अभिक्रियाएँ एवं समीकरण","अभिक्रियाओं के प्रकार, संतुलित रासायनिक समीकरण और ऑक्सीकरण-अपचयन।"],
+["2","अम्ल, क्षारक एवं लवण","सूचक, pH मान, उदासीनीकरण तथा दैनिक जीवन के लवण।"],
+["3","धातु एवं अधातु","भौतिक-रासायनिक गुण, अभिक्रियाशीलता और धातुओं का निष्कर्षण।"],
+["4","कार्बन एवं उसके यौगिक","सहसंयोजक बंध, हाइड्रोकार्बन, एथेनॉल और एथेनोइक अम्ल।"],
+["5","तत्वों का आवर्त वर्गीकरण","आवर्त सारणी, समूह, आवर्त और गुणों में परिवर्तन।"],
+["6","जैव प्रक्रम","पोषण, श्वसन, परिवहन और उत्सर्जन।"],
+["7","नियंत्रण एवं समन्वय","तंत्रिका तंत्र, हार्मोन और पौधों में समन्वय।"],
+["8","जीव जनन कैसे करते हैं?","अलैंगिक और लैंगिक जनन तथा मानव जनन।"],
+["9","आनुवंशिकता","लक्षणों का वंशानुक्रम और आनुवंशिकता के मूल सिद्धांत।"],
+["10","प्रकाश—परावर्तन तथा अपवर्तन","दर्पण, लेंस, किरण आरेख और सूत्र।"],
+["11","मानव नेत्र तथा रंगबिरंगा संसार","नेत्र की संरचना, दृष्टि दोष और प्रकाश का प्रकीर्णन।"],
+["12","विद्युत","ओम का नियम, प्रतिरोध, विद्युत शक्ति और ऊर्जा।"],
+["13","विद्युत धारा के चुंबकीय प्रभाव","चुंबकीय क्षेत्र, विद्युत मोटर और घरेलू विद्युत परिपथ।"]
+];
+document.getElementById("chapters").innerHTML=chapters.map(c=>'<details><summary>अध्याय '+c[0]+': '+c[1]+'</summary><p>'+c[2]+'</p><p><b>नोट:</b> इस अध्याय के विस्तृत नोट्स और प्रश्न-उत्तर अभी जोड़ने बाकी हैं।</p></details>').join("");
+document.getElementById("quiz").addEventListener("submit",function(e){e.preventDefault();let score=0;if(this.q1.value==="b")score++;if(this.q2.value==="a")score++;document.getElementById("result").textContent="आपके अंक: "+score+"/2"+(score===2?" — बहुत बढ़िया!":" — सही उत्तर फिर से पढ़कर प्रयास करें।");});
+</script>
+</body>
+                                                                                                                                                                                                                     </html>
