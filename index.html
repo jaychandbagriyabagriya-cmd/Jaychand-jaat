@@ -192,7 +192,14 @@ function renderSubjects(filter=""){
   const title=document.createElement("h3");title.textContent=s.name;
   const desc=document.createElement("p");desc.textContent=s.desc;
   const btn=document.createElement("button");btn.className="small-btn";btn.textContent="नोट्स / टेस्ट देखें";
-  btn.addEventListener("click",()=>{document.getElementById("quizSubject").value=quizzes[s.name]?s.name:"गणित";document.getElementById("notes").scrollIntoView({behavior:"smooth"});});
+  btn.addEventListener("click",()=>{
+  if(s.name==="विज्ञान"){
+    window.location.href="science.html";
+    return;
+  }
+  document.getElementById("quizSubject").value=quizzes[s.name]?s.name:"गणित";
+  document.getElementById("notes").scrollIntoView({behavior:"smooth"});
+});
   card.append(icon,title,desc,btn);subjectGrid.appendChild(card);
  });
  if(!found.length)subjectGrid.innerHTML='<div class="empty">कोई विषय नहीं मिला। दूसरा नाम खोजें।</div>';
