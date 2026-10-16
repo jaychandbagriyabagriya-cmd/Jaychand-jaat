@@ -1,265 +1,256 @@
-
-<!DOCTYPE html>
+!DOCTYPE html>
 <html lang="hi">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>मेरी पढ़ाई</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#152e67">
+<title>मेरी पढ़ाई | स्मार्ट स्टडी पोर्टल</title>
 <style>
-body{font-family:Arial,sans-serif;background:#eef4ff;margin:0;color:#17305c}
-header{background:#155eef;color:white;text-align:center;padding:25px 10px}
-main{max-width:700px;margin:auto;padding:15px}
-.card{background:white;padding:18px;margin:15px 0;border-radius:12px;box-shadow:0 2px 8px #0001}
-button{background:#155eef;color:white;border:0;border-radius:7px;padding:12px;margin:5px}
-h2{color:#155eef}
-label{display:block;padding:8px}
+:root{--navy:#152e67;--blue:#315de8;--purple:#7950d8;--bg:#f4f7ff;--ink:#19233b;--muted:#63708a;--card:#fff;--line:#e4e9f5;--green:#14845b}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Noto Sans Devanagari",Arial,sans-serif;line-height:1.6}
+a{color:inherit;text-decoration:none}button,input,select{font:inherit}button{cursor:pointer;border:0}
+.hero{background:radial-gradient(circle at 85% 10%,#7f69ff 0,transparent 30%),linear-gradient(135deg,#142b61,#315de8 65%,#6b4bd1);color:#fff;padding:22px 18px 52px}
+.topbar{max-width:1120px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.brand{font-size:1.3rem;font-weight:850;letter-spacing:.2px}.brand span{color:#ffe38b}
+.nav{display:flex;gap:8px;flex-wrap:wrap}.nav a{padding:8px 12px;border-radius:999px;background:#ffffff1c;font-size:.92rem}
+.hero-inner{max-width:1120px;margin:44px auto 0;display:grid;grid-template-columns:1.5fr 1fr;gap:28px;align-items:center}
+.eyebrow{display:inline-block;background:#ffffff20;padding:5px 11px;border-radius:99px;font-size:.85rem}
+h1{font-size:clamp(2rem,5vw,3.6rem);line-height:1.15;margin:14px 0}.hero p{color:#e8edff;max-width:650px}
+.hero-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:11px 16px;border-radius:12px;background:var(--blue);color:white;font-weight:750}
+.btn.light{background:white;color:var(--navy)}.btn.ghost{background:#edf1ff;color:var(--navy)}.btn:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #ffcb55;outline-offset:2px}
+.hero-card{background:#ffffff18;border:1px solid #ffffff3a;border-radius:24px;padding:24px;backdrop-filter:blur(6px)}
+.hero-card .big{font-size:3.5rem}.hero-card h3{margin:4px 0}.hero-card p{margin:4px 0}
+main{max-width:1120px;margin:-26px auto 0;padding:0 16px 40px;position:relative}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.stat,.panel,.subject,.note-card,.test-card{background:var(--card);border:1px solid var(--line);border-radius:18px;box-shadow:0 8px 28px #1a36710a}
+.stat{padding:17px}.stat strong{display:block;font-size:1.5rem;color:var(--navy)}.stat span{color:var(--muted);font-size:.9rem}
+.section{padding-top:34px;scroll-margin-top:18px}.section-head{display:flex;justify-content:space-between;gap:12px;align-items:end;flex-wrap:wrap;margin-bottom:15px}
+.section h2{font-size:1.65rem;margin:0;color:var(--navy)}.sub{margin:4px 0 0;color:var(--muted)}
+.search-row{display:flex;gap:10px;flex-wrap:wrap}.search-row input,.search-row select,.field{background:white;border:1px solid #d8dfef;border-radius:11px;padding:10px 12px;min-width:0}
+.search-row input{flex:1;min-width:180px}
+.subject-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.subject{padding:19px;transition:transform .15s,box-shadow .15s}.subject:hover{transform:translateY(-3px);box-shadow:0 12px 30px #1a367115}
+.subject-icon{font-size:2rem}.subject h3{margin:5px 0}.subject p{color:var(--muted);margin:4px 0 14px;font-size:.93rem}
+.small-btn{background:#edf1ff;color:#2445a8;border-radius:10px;padding:9px 12px;font-weight:750}
+.content-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.panel{padding:20px}.panel h3{margin-top:0;color:var(--navy)}
+.note-list{display:grid;gap:10px}.note-item{border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.note-toggle{width:100%;text-align:left;background:#f8faff;color:var(--ink);padding:13px;font-weight:750;display:flex;justify-content:space-between;gap:8px}
+.note-body{display:none;padding:14px;border-top:1px solid var(--line)}.note-body.open{display:block}
+.note-body p{margin:7px 0}.tag{display:inline-block;background:#eaf8f1;color:#08734e;padding:2px 8px;border-radius:99px;font-size:.8rem}
+.quiz-meta{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 18px}.pill{background:#eef2ff;color:#2c4aa8;border-radius:99px;padding:5px 10px;font-size:.88rem}
+.question{padding:16px 0;border-bottom:1px solid var(--line)}.question h4{margin:0 0 10px}.option{display:flex;gap:9px;align-items:flex-start;padding:9px 11px;margin:6px 0;border:1px solid var(--line);border-radius:10px;background:#fff}
+.option:has(input:checked){border-color:var(--blue);background:#f1f4ff}.option input{margin-top:5px;accent-color:var(--blue)}
+.quiz-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+.result{display:none;margin-top:18px;padding:18px;border-radius:15px;background:#effaf4;border:1px solid #c7ebd7}.result.show{display:block}.score{font-size:2rem;font-weight:850;color:var(--green)}
+.empty{padding:18px;color:var(--muted);text-align:center}.notice{background:#fff8e6;border:1px solid #f5df9f;padding:12px 14px;border-radius:12px;color:#775300;font-size:.92rem}
+footer{background:#122653;color:#e6ecff;text-align:center;padding:25px 16px}footer p{margin:4px}
+.hidden{display:none!important}
+@media(max-width:760px){.hero-inner{grid-template-columns:1fr;margin-top:30px}.hero-card{display:none}.stats{grid-template-columns:repeat(2,1fr)}.subject-grid{grid-template-columns:repeat(2,1fr)}.content-grid{grid-template-columns:1fr}.nav{width:100%}.nav a{font-size:.82rem;padding:7px 9px}}
+@media(max-width:420px){.subject-grid{grid-template-columns:1fr}.hero{padding-bottom:44px}.stat{padding:13px}}
 </style>
+</head>
 <body>
-<header>
-<h1>📚 मेरी पढ़ाई</h1>
-<p>राजस्थान बोर्ड | कक्षा 10</p>
-</header>
-<main>
-<div class="card">
-<h2>स्वागत है विद्यार्थी!</h2>
-<p>यहाँ पढ़ो, अभ्यास करो और अपनी तैयारी बेहतर बनाओ।</p>
-<button onclick="chapters()">गणित के अध्याय</button>
-<button onclick="test()">ऑनलाइन टेस्ट</button>
-</div>
-<div class="card" id="content">
-<h2>हमारे विषय</h2>
-<p>➗ गणित</p>
-<p>📖 हिंदी</p>
-<p>🔬 विज्ञान</p>
-<p>🌍 सामाजिक विज्ञान</p>
-</div>
-</main>
-<script>
-function chapters(){
-document.getElementById("content").innerHTML=`
-<h2>कक्षा 10 गणित</h2> button type <button onclick="document.getElementById('chapter1').style.display='block'">
-  अध्याय 1 — वास्तविक संख्याएँ
-</button>
-
-<div id="chapter1" style="display:none; padding:15px; border:1px solid #ccc; margin-top:10px;">
-  <h4>अध्याय 1: वास्तविक संख्याएँ</h4>
-
-  <h4>1. वास्तविक संख्याएँ क्या हैं?</h4>
-  <p>परिमेय और अपरिमेय संख्याओं के समूह को वास्तविक संख्याएँ कहते हैं।</p>
-
-  <h4>2. परिमेय संख्या</h4>
-  <p>जिस संख्या को p/q के रूप में लिखा जा सके, जहाँ p और q पूर्णांक हों तथा q ≠ 0 हो, वह परिमेय संख्या है।</p>
-  <p>उदाहरण: 1/2, 3/4, 5</p>
-
-  <h4>3. अपरिमेय संख्या</h4>
-  <p>जिस संख्या को दो पूर्णांकों के अनुपात p/q के रूप में नहीं लिखा जा सकता, वह अपरिमेय संख्या है।</p>
-  <p>उदाहरण: √2, √3, π</p>
-
-  <h4>अभ्यास प्रश्न</h4>
-  <p>प्रश्न 1: क्या 5 एक परिमेय संख्या है?</p>
-  <p>उत्तर: हाँ, क्योंकि 5 = 5/1।</p>
-
-  <p>प्रश्न 2: √2 किस प्रकार की संख्या है?</p>
-  <p>उत्तर: अपरिमेय संख्या।</p>
-</div> 
-<!-- अध्याय 2: बहुपद -->
-<button type="button" onclick="document.getElementById('chapter2').style.display = 'block'; return false;">
-  अध्याय 2 — बहुपद
-</button>
-
-<div id="chapter2" style="display:none; padding:15px;">
-  <h4>बहुपद के नोट्स</h4>
-  <p><b>बहुपद:</b> ऐसा बीजीय व्यंजक जिसमें चर की घातें शून्य या धनात्मक पूर्णांक हों।</p>
-  <p><b>उदाहरण:</b> x + 2, x² + 3x + 2</p>
-  <p><b>प्रश्न:</b> 5x² + 2x + 1 की घात क्या है?</p>
-  <p><b>उत्तर:</b> 2</p>
-  <p><b>प्रश्न:</b> x − 3 का शून्यक क्या है?</p>
-  <p><b>उत्तर:</b> 3, क्योंकि 3 − 3 = 0।</p>
-</div> 
-<!-- अध्याय 2 का ऑनलाइन टेस्ट -->
-<div style="border:2px solid #2563eb; padding:15px; margin:15px 0; border-radius:12px;">
-  <h3>📝 अध्याय 2 — बहुपद टेस्ट</h3>
-  <p>हर प्रश्न का उत्तर लिखो। सही उत्तर पर 1 अंक मिलेगा। कुल अंक: 5</p>
-
-  <form id="polynomialTest">
-    <p>1. 5x² + 2x + 1 की घात कितनी है?</p>
-    <input id="q1" type="text" placeholder="अपना उत्तर लिखें" required>
-
-    <p>2. x − 4 का शून्यक क्या है?</p>
-    <input id="q2" type="text" placeholder="अपना उत्तर लिखें" required>
-
-    <p>3. 2x³ + 1 में x³ का गुणांक क्या है?</p>
-    <input id="q3" type="text" placeholder="अपना उत्तर लिखें" required>
-
-    <p>4. क्या 7 एक परिमेय संख्या है? (हाँ/नहीं)</p>
-    <input id="q4" type="text" placeholder="अपना उत्तर लिखें" required>
-
-    <p>5. x² − 9 का गुणनखंड रूप लिखो।</p>
-    <input id="q5" type="text" placeholder="अपना उत्तर लिखें" required>
-
-    <br><br>
-    <button type="submit">टेस्ट जमा करें</button>
-  </form>
-
-  <div id="testResult" style="display:none; margin-top:15px;">
-    <h3 id="score"></h3>
-    <p id="feedback"></p>
-    <button type="button" onclick="document.getElementById('polynomialTest').reset(); document.getElementById('testResult').style.display='none';">
-      दोबारा टेस्ट दें
-    </button>
+<header class="hero">
+  <div class="topbar">
+    <a class="brand" href="#">📘 मेरी <span>पढ़ाई</span></a>
+    <nav class="nav" aria-label="मुख्य नेविगेशन">
+      <a href="#subjects">विषय</a><a href="#notes">नोट्स</a><a href="#test">ऑनलाइन टेस्ट</a><a href="#about">जानकारी</a>
+    </nav>
   </div>
-</div>
+  <div class="hero-inner">
+    <div>
+      <span class="eyebrow">कक्षा 10 • पढ़ो, समझो, आगे बढ़ो</span>
+      <h1>तुम्हारी मेहनत,<br>तुम्हारा भविष्य।</h1>
+      <p>एक ही जगह पर विषयवार अध्ययन सामग्री, आसान नोट्स और अभ्यास टेस्ट। रोज़ थोड़ा सीखो और अपनी प्रगति जाँचो।</p>
+      <div class="hero-actions"><a class="btn light" href="#subjects">📚 पढ़ाई शुरू करो</a><a class="btn" href="#test">✍️ टेस्ट दो</a></div>
+    </div>
+    <div class="hero-card"><div class="big">🎯</div><h3>आज का लक्ष्य</h3><p>एक विषय पढ़ो, 5 सवाल हल करो और अपनी गलतियों से सीखो।</p></div>
+  </div>
+</header>
+
+<main>
+  <section class="stats" aria-label="वेबसाइट की सुविधाएँ">
+    <div class="stat"><strong>5+</strong><span>मुख्य विषय</span></div>
+    <div class="stat"><strong>24×7</strong><span>अपनी गति से पढ़ाई</span></div>
+    <div class="stat"><strong>MCQ</strong><span>अभ्यास टेस्ट</span></div>
+    <div class="stat"><strong>तुरंत</strong><span>स्कोर और फीडबैक</span></div>
+  </section>
+
+  <section id="subjects" class="section">
+    <div class="section-head"><div><h2>अपने विषय चुनें</h2><p class="sub">किस विषय से पढ़ना शुरू करना चाहते हो?</p></div>
+      <div class="search-row"><input id="subjectSearch" type="search" placeholder="विषय खोजें…" aria-label="विषय खोजें"></div>
+    </div>
+    <div id="subjectGrid" class="subject-grid"></div>
+  </section>
+
+  <section id="notes" class="section">
+    <div class="section-head"><div><h2>📖 अध्ययन नोट्स</h2><p class="sub">नीचे दिए गए नोट्स नमूना सामग्री हैं; इन्हें पाठ्यपुस्तक से मिलाकर पढ़ें।</p></div></div>
+    <div class="content-grid">
+      <div class="panel"><h3>📌 गणित: त्वरित नोट्स</h3><div id="noteList" class="note-list"></div></div>
+      <div class="panel"><h3>🌱 सभी विषयों के लिए अध्ययन तरीका</h3>
+        <ul>
+          <li>पहले पाठ को ध्यान से पढ़ो।</li>
+          <li>महत्त्वपूर्ण परिभाषाएँ अपनी कॉपी में लिखो।</li>
+          <li>उदाहरणों को खुद हल करके देखो।</li>
+          <li>अध्याय के बाद टेस्ट देकर गलत उत्तर दोबारा पढ़ो।</li>
+          <li>परीक्षा के लिए अपने बोर्ड की नवीनतम पाठ्यपुस्तक और पाठ्यक्रम को प्राथमिकता दो।</li>
+        </ul>
+        <div class="notice">ध्यान दें: यह वेबसाइट सभी विश्व के नोट्स अपने-आप नहीं लाती। अभी इसमें उदाहरण सामग्री है; पूरी किताबों/सभी अध्यायों के नोट्स विषयवार जोड़ने होंगे।</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="test" class="section">
+    <div class="section-head"><div><h2>✍️ ऑनलाइन अभ्यास टेस्ट</h2><p class="sub">जवाब चुनो, टेस्ट जमा करो और अपना स्कोर देखो।</p></div></div>
+    <div class="panel">
+      <div class="search-row">
+        <label>विषय चुनें
+          <select id="quizSubject" aria-label="टेस्ट का विषय">
+            <option value="गणित">गणित</option><option value="विज्ञान">विज्ञान</option><option value="सामाजिक विज्ञान">सामाजिक विज्ञान</option><option value="हिंदी">हिंदी</option><option value="अंग्रेज़ी">अंग्रेज़ी</option>
+          </select>
+        </label>
+        <button class="btn" id="loadQuiz" type="button">टेस्ट लोड करें</button>
+      </div>
+      <div class="quiz-meta"><span class="pill" id="quizCount">4 प्रश्न</span><span class="pill">हर प्रश्न: 1 अंक</span><span class="pill">कोई नकारात्मक अंक नहीं</span></div>
+      <form id="quizForm">
+        <div id="questions"></div>
+        <div class="quiz-actions"><button class="btn" type="submit">✅ टेस्ट जमा करें</button><button class="btn ghost" type="button" id="resetQuiz">फिर से शुरू करें</button></div>
+      </form>
+      <div id="result" class="result" aria-live="polite"></div>
+      <p class="sub">महत्त्वपूर्ण: यह डेमो टेस्ट इस ब्राउज़र में स्कोर दिखाता है। जवाब/रिज़ल्ट किसी शिक्षक या सर्वर पर जमा नहीं होते। ऑनलाइन जमा करने और अलग-अलग विद्यार्थियों के रिज़ल्ट सुरक्षित रखने के लिए बाद में डेटाबेस/बैकएंड जोड़ना होगा।</p>
+    </div>
+  </section>
+
+  <section id="about" class="section">
+    <div class="panel"><h2>💡 इस वेबसाइट के बारे में</h2><p>“मेरी पढ़ाई” एक शुरुआती अध्ययन पोर्टल है। इसमें विषयों, नोट्स और अभ्यास टेस्ट का आधार तैयार है। नई सामग्री को सही कक्षा, बोर्ड, किताब और अध्याय के अनुसार जोड़ते रहें।</p><p class="sub">बनाया गया विद्यार्थियों को व्यवस्थित तरीके से पढ़ने में मदद देने के लिए।</p></div>
+  </section>
+</main>
+<footer><p><strong>📘 मेरी पढ़ाई</strong></p><p>सीखना जारी रखो — हर दिन एक कदम आगे।</p><p>© <span id="year"></span> मेरी पढ़ाई</p></footer>
 
 <script>
-document.getElementById('polynomialTest').addEventListener('submit', function(e) {
-  e.preventDefault();
-
-  const answers = [
-    ['2'],
-    ['4'],
-    ['2'],
-    ['haan', 'han', 'yes', 'हाँ', 'हां'],
-    ['(x-3)(x+3)', '(x+3)(x-3)', 'x²-9', 'x^2-9']
-  ];
-
-  let score = 0;
-
-  for (let i = 1; i <= 5; i++) {
-    let userAnswer = document.getElementById('q' + i).value
-      .trim().toLowerCase().replace(/\s/g, '');
-
-    if (answers[i - 1].includes(userAnswer)) {
-      score++;
-    }
-  }
-
-  document.getElementById('score').textContent =
-    'आपके अंक: ' + score + ' / 5';
-
-  document.getElementById('feedback').textContent =
-    score === 5 ? 'शानदार! सभी उत्तर सही हैं।' :
-    score >= 3 ? 'अच्छा प्रयास! नोट्स दोबारा पढ़कर फिर टेस्ट दो।' :
-    'कोई बात नहीं! नोट्स पढ़ो और दोबारा प्रयास करो।';
-
-  document.getElementById('testResult').style.display = 'block';
-});
-</script>
-
-
-<!-- अध्याय 3: दो चरों वाले रैखिक समीकरण युग्म -->
-<button type="button" onclick="document.getElementById('chapter3').style.display='block';">
-  अध्याय 3 — दो चरों वाले रैखिक समीकरण युग्म
-</button>
-
-<div id="chapter3" style="display:none; padding:15px;">
-  <h4>रैखिक समीकरण युग्म के नोट्स</h4>
-  <p>दो चरों वाले रैखिक समीकरण का सामान्य रूप ax + by + c = 0 होता है।</p>
-  <p><b>उदाहरण:</b> x + y = 5 और x − y = 1</p>
-  <h4>प्रश्न-उत्तर</h4>
-  <p><b>प्रश्न:</b> x + y = 5 और x − y = 1 का हल क्या है?</p>
-  <p><b>उत्तर:</b> दोनों समीकरण जोड़ने पर 2x = 6, इसलिए x = 3। पहले समीकरण से y = 2।</p>
-</div>
-
-<!-- अध्याय 4: द्विघात समीकरण -->
-<button type="button" onclick="document.getElementById('chapter4').style.display='block';">
-  अध्याय 4 — द्विघात समीकरण
-</button>
-
-<div id="chapter4" style="display:none; padding:15px;">
-  <h4>द्विघात समीकरण के नोट्स</h4>
-  <p>जिस समीकरण में चर की सबसे बड़ी घात 2 हो, उसे द्विघात समीकरण कहते हैं।</p>
-  <p><b>सामान्य रूप:</b> ax² + bx + c = 0, जहाँ a ≠ 0।</p>
-  <h4>प्रश्न-उत्तर</h4>
-  <p><b>प्रश्न:</b> x² − 5x + 6 = 0 के मूल ज्ञात करो।</p>
-  <p><b>हल:</b> (x − 2)(x − 3) = 0</p>
-  <p><b>उत्तर:</b> x = 2 या x = 3।</p>
-</div>
-
-<!-- अध्याय 5: समांतर श्रेढ़ियाँ -->
-<button type="button" onclick="document.getElementById('chapter5').style.display='block';">
-  अध्याय 5 — समांतर श्रेढ़ियाँ
-</button>
-
-<div id="chapter5" style="display:none; padding:15px;">
-  <h4>समांतर श्रेढ़ी के नोट्स</h4>
-  <p>जिस श्रेढ़ी में लगातार दो पदों का अंतर समान हो, उसे समांतर श्रेढ़ी (AP) कहते हैं।</p>
-  <p><b>उदाहरण:</b> 2, 5, 8, 11, 14, ...</p>
-  <p><b>सार्व अंतर:</b> d = दूसरा पद − पहला पद</p>
-  <p><b>nवें पद का सूत्र:</b> aₙ = a + (n − 1)d</p>
-  <h4>प्रश्न-उत्तर</h4>
-  <p><b>प्रश्न:</b> 2, 5, 8, 11, ... का पाँचवाँ पद क्या है?</p>
-  <p><b>हल:</b> a = 2, d = 3, n = 5</p>
-  <p>a₅ = 2 + (5 − 1) × 3 = 14</p>
-  <p><b>उत्तर:</b> 14</p>
-</div>
-
-<p>1. वास्तविक संख्याएँ</p>
-<p>2. बहुपद</p>
-<p>3. दो चर वाले रैखिक समीकरण</p>
-<p>4. द्विघात समीकरण</p>
-<p>5. समांतर श्रेढ़ियाँ</p>
-<p>6. त्रिभुज</p>
-<p>7. निर्देशांक ज्यामिति</p>
-<p>8. त्रिकोणमिति</p>
-<p>9. त्रिकोणमिति के अनुप्रयोग</p>
-<p>10. वृत्त</p>
-<p>11. वृत्तों से संबंधित क्षेत्रफल</p>
-<p>12. पृष्ठीय क्षेत्रफल और आयतन</p>
-<p>13. सांख्यिकी</p>
-<p>14. प्रायिकता</p>`;
-}
-const qs=[
-["12 और 18 का HCF?",["3","6","9","12"],1],
-["sin 30° का मान?",["0","1","1/2","√3"],2],
-["2,5,8,11 का सार्व अंतर?",["2","3","4","5"],1],
-["x²−9=0 के मूल?",["3 और −3","3 और 3","9 और 0","1 और 9"],0],
-["tan 45° का मान?",["0","1","2","√3"],1],
-["2,4,6 का माध्य?",["2","3","4","6"],2],
-["7 सेमी त्रिज्या के वृत्त का क्षेत्रफल (π=22/7)?",["44","154","49","22"],1],
-["3 सेमी भुजा वाले घन का आयतन?",["9","18","27","36"],2],
-["निष्पक्ष सिक्के पर चित आने की प्रायिकता?",["0","1/4","1/2","1"],2],
-["x²−5x+6 के शून्यक?",["1 और 6","2 और 3","3 और 5","2 और 5"],1]
+const subjects = [
+ {name:"गणित",icon:"➗",desc:"सूत्र, उदाहरण और प्रश्न-अभ्यास"},
+ {name:"विज्ञान",icon:"🔬",desc:"भौतिकी, रसायन और जीवविज्ञान"},
+ {name:"सामाजिक विज्ञान",icon:"🌍",desc:"इतिहास, भूगोल, राजनीति और अर्थशास्त्र"},
+ {name:"हिंदी",icon:"📝",desc:"व्याकरण, पाठ और लेखन"},
+ {name:"अंग्रेज़ी",icon:"🔤",desc:"पाठ, शब्दार्थ और व्याकरण"},
+ {name:"कौशल शिक्षा",icon:"🧠",desc:"संचार कौशल और जीवन कौशल"}
 ];
-function test(){
-let html="<h2>📝 गणित ऑनलाइन टेस्ट</h2><p>10 प्रश्न, प्रत्येक 1 अंक</p>";
-qs.forEach((q,i)=>{
-html+=`<div><b>${i+1}. ${q[0]}</b>`;
-q[1].forEach((o,j)=>{
-html+=`<label><input type="radio" name="q${i}" value="${j}"> ${o}</label>`;
-});
-html+="</div><hr>";
-});
-html+='<button onclick="score()">टेस्ट जमा करें</button><div id="result"></div>';
-document.getElementById("content").innerHTML=html;
+const notes = [
+ {title:"अध्याय 1 — वास्तविक संख्याएँ",body:"परिमेय संख्या को p/q के रूप में लिखा जा सकता है, जहाँ p और q पूर्णांक तथा q ≠ 0 हो। उदाहरण: 1/2 और 5 = 5/1। √2 और √3 अपरिमेय संख्याओं के उदाहरण हैं।"},
+ {title:"अध्याय 2 — बहुपद",body:"बहुपद के पदों में चर की घातें अशून्य ऋणेतर पूर्णांक होती हैं। उदाहरण: 2x² + 3x + 1 की घात 2 है।"},
+ {title:"अध्याय 3 — रैखिक समीकरण युग्म",body:"दो चरों वाले समीकरणों को प्रतिस्थापन, विलोपन या आलेखीय विधि से हल किया जा सकता है। उदाहरण: x+y=5 और x−y=1 का हल x=3, y=2 है।"},
+ {title:"अध्याय 4 — द्विघात समीकरण",body:"सामान्य रूप ax²+bx+c=0 है, जहाँ a ≠ 0। मूलों का सूत्र x = (−b ± √(b²−4ac))/(2a) है।"},
+ {title:"अध्याय 5 — समांतर श्रेढ़ियाँ",body:"समांतर श्रेढ़ी में क्रमागत पदों का अंतर समान रहता है। nवाँ पद aₙ=a+(n−1)d और पहले n पदों का योग Sₙ=n/2[2a+(n−1)d] है।"}
+];
+const quizzes = {
+ "गणित":[
+  {q:"5 को p/q के रूप में कैसे लिख सकते हैं?",o:["5/0","5/1","0/5"],a:1,why:"5 = 5/1; हर q शून्य नहीं होना चाहिए।"},
+  {q:"3x² + 2x + 1 की घात क्या है?",o:["1","2","3"],a:1,why:"चर x की सबसे बड़ी घात 2 है।"},
+  {q:"2, 5, 8, 11,... का सार्व अंतर क्या है?",o:["2","3","5"],a:1,why:"हर अगले पद में 3 जोड़ा गया है।"},
+  {q:"x² − 5x + 6 = 0 के मूल क्या हैं?",o:["2 और 3","1 और 6","0 और 5"],a:0,why:"(x−2)(x−3)=0, इसलिए मूल 2 और 3 हैं।"}
+ ],
+ "विज्ञान":[
+  {q:"प्रकाश संश्लेषण में पौधे मुख्य रूप से कौन-सी गैस लेते हैं?",o:["ऑक्सीजन","कार्बन डाइऑक्साइड","नाइट्रोजन"],a:1,why:"प्रकाश संश्लेषण में पौधे कार्बन डाइऑक्साइड का उपयोग करते हैं।"},
+  {q:"विद्युत धारा की SI इकाई क्या है?",o:["वोल्ट","ओम","ऐम्पियर"],a:2,why:"विद्युत धारा की SI इकाई ऐम्पियर है।"},
+  {q:"अम्ल नीले लिटमस को किस रंग में बदलता है?",o:["लाल","हरा","नीला ही"],a:0,why:"अम्ल नीले लिटमस को लाल करता है।"},
+  {q:"मानव शरीर में रक्त पंप करने वाला अंग कौन-सा है?",o:["फेफड़ा","हृदय","गुर्दा"],a:1,why:"हृदय रक्त को पूरे शरीर में पंप करता है।"}
+ ],
+ "सामाजिक विज्ञान":[
+  {q:"भारत का संविधान कब लागू हुआ?",o:["15 अगस्त 1947","26 जनवरी 1950","26 नवंबर 1949"],a:1,why:"संविधान 26 जनवरी 1950 को लागू हुआ।"},
+  {q:"भारत में गाँव के स्थानीय स्वशासन की संस्था क्या कहलाती है?",o:["ग्राम पंचायत","संसद","सर्वोच्च न्यायालय"],a:0,why:"ग्राम पंचायत गाँव के स्थानीय स्वशासन की संस्था है।"},
+  {q:"काली मिट्टी किस फसल के लिए विशेष रूप से उपयुक्त मानी जाती है?",o:["कपास","चाय","जूट"],a:0,why:"काली मिट्टी कपास की खेती के लिए उपयुक्त है।"},
+  {q:"लोकतंत्र में सरकार चुनने का सामान्य तरीका क्या है?",o:["वंशानुगत अधिकार","चुनाव","लॉटरी"],a:1,why:"लोकतंत्र में नागरिक चुनाव के माध्यम से प्रतिनिधि चुनते हैं।"}
+ ],
+ "हिंदी":[
+  {q:"'सूर्य' का एक सामान्य पर्यायवाची क्या है?",o:["रवि","रात्रि","पवन"],a:0,why:"रवि, सूर्य का पर्यायवाची है।"},
+  {q:"'दिन' का विलोम शब्द क्या है?",o:["सुबह","रात","प्रकाश"],a:1,why:"दिन का विलोम रात है।"},
+  {q:"संज्ञा किसका नाम बताती है?",o:["व्यक्ति, वस्तु, स्थान या भाव","केवल क्रिया","केवल गुण"],a:0,why:"संज्ञा व्यक्ति, वस्तु, स्थान या भाव का नाम है।"},
+  {q:"'वह विद्यालय जाता है' वाक्य में सर्वनाम कौन-सा है?",o:["विद्यालय","जाता","वह"],a:2,why:"'वह' सर्वनाम है।"}
+ ],
+ "अंग्रेज़ी":[
+  {q:"What is the plural of 'child'?",o:["childs","children","childes"],a:1,why:"The plural form is children."},
+  {q:"Choose the correct article: ___ apple.",o:["A","An","The only"],a:1,why:"Use 'an' before a vowel sound: an apple."},
+  {q:"What is the past tense of 'go'?",o:["goed","gone","went"],a:2,why:"The simple past tense of go is went."},
+  {q:"Which word is an adjective in 'a beautiful flower'?",o:["flower","beautiful","a"],a:1,why:"Beautiful describes the noun flower."}
+ ],
+ "कौशल शिक्षा":[
+  {q:"संचार में संदेश भेजने वाला क्या कहलाता है?",o:["प्रेषक","प्राप्तकर्ता","माध्यम"],a:0,why:"प्रेषक संदेश भेजता है।"},
+  {q:"ध्यान से सुनने की क्षमता को क्या कहते हैं?",o:["सक्रिय श्रवण","शोर","अवरोध"],a:0,why:"सक्रिय श्रवण में ध्यान से सुनना और समझना शामिल है।"},
+  {q:"संचार में प्रतिक्रिया को अंग्रेज़ी में क्या कहते हैं?",o:["Feedback","Sender","Noise"],a:0,why:"प्राप्तकर्ता की प्रतिक्रिया feedback कहलाती है।"},
+  {q:"संचार की बाधा का उदाहरण क्या है?",o:["स्पष्ट आवाज़","शोर","ध्यान से सुनना"],a:1,why:"शोर संदेश को समझने में बाधा डाल सकता है।"}
+ ]
+};
+const subjectGrid=document.getElementById("subjectGrid");
+function renderSubjects(filter=""){
+ subjectGrid.innerHTML="";
+ const found=subjects.filter(s=>s.name.toLowerCase().includes(filter.toLowerCase()));
+ found.forEach(s=>{
+  const card=document.createElement("article");card.className="subject";
+  const icon=document.createElement("div");icon.className="subject-icon";icon.textContent=s.icon;
+  const title=document.createElement("h3");title.textContent=s.name;
+  const desc=document.createElement("p");desc.textContent=s.desc;
+  const btn=document.createElement("button");btn.className="small-btn";btn.textContent="नोट्स / टेस्ट देखें";
+  btn.addEventListener("click",()=>{document.getElementById("quizSubject").value=quizzes[s.name]?s.name:"गणित";document.getElementById("notes").scrollIntoView({behavior:"smooth"});});
+  card.append(icon,title,desc,btn);subjectGrid.appendChild(card);
+ });
+ if(!found.length)subjectGrid.innerHTML='<div class="empty">कोई विषय नहीं मिला। दूसरा नाम खोजें।</div>';
 }
-function score(){
-let n=0,empty=0;
-qs.forEach((q,i)=>{
-let a=document.querySelector('input[name="q'+i+'"]:checked');
-if(!a)empty++;
-else if(Number(a.value)===q[2])n++;
+renderSubjects();
+document.getElementById("subjectSearch").addEventListener("input",e=>renderSubjects(e.target.value));
+const noteList=document.getElementById("noteList");
+notes.forEach((n,i)=>{
+ const item=document.createElement("div");item.className="note-item";
+ const btn=document.createElement("button");btn.className="note-toggle";btn.type="button";btn.setAttribute("aria-expanded","false");
+ btn.innerHTML="<span></span><span>＋</span>";btn.children[0].textContent=n.title;
+ const body=document.createElement("div");body.className="note-body";const p=document.createElement("p");p.textContent=n.body;body.appendChild(p);
+ btn.addEventListener("click",()=>{const open=body.classList.toggle("open");btn.setAttribute("aria-expanded",String(open));btn.children[1].textContent=open?"−":"＋";});
+ item.append(btn,body);noteList.appendChild(item);
 });
-document.getElementById("result").innerHTML=
-"<h3>आपके अंक: "+n+"/10</h3><h3>प्रतिशत: "+(n*10)+"%</h3><p>बिना उत्तर वाले प्रश्न: "+empty+"</p>";
+let currentQuiz=[];
+function loadQuiz(){
+ const subject=document.getElementById("quizSubject").value;
+ currentQuiz=quizzes[subject]||quizzes["गणित"];
+ const host=document.getElementById("questions");host.innerHTML="";
+ document.getElementById("quizCount").textContent=currentQuiz.length+" प्रश्न";
+ document.getElementById("result").classList.remove("show");
+ currentQuiz.forEach((q,i)=>{
+  const block=document.createElement("div");block.className="question";
+  const heading=document.createElement("h4");heading.textContent=(i+1)+". "+q.q;block.appendChild(heading);
+  q.o.forEach((opt,j)=>{
+   const label=document.createElement("label");label.className="option";
+   const radio=document.createElement("input");radio.type="radio";radio.name="q"+i;radio.value=String(j);radio.required=true;
+   const span=document.createElement("span");span.textContent=opt;
+   label.append(radio,span);block.appendChild(label);
+  });
+  host.appendChild(block);
+ });
 }
+document.getElementById("loadQuiz").addEventListener("click",loadQuiz);
+document.getElementById("quizSubject").addEventListener("change",loadQuiz);
+document.getElementById("quizForm").addEventListener("submit",e=>{
+ e.preventDefault();
+ let score=0;const details=[];
+ currentQuiz.forEach((q,i)=>{
+  const picked=document.querySelector('input[name="q'+i+'"]:checked');
+  const correct=!!picked&&Number(picked.value)===q.a;
+  if(correct)score++;
+  details.push((correct?"✅ ":"❌ ") +(i+1)+". "+q.why);
+ });
+ const percent=Math.round(score/currentQuiz.length*100);
+ const result=document.getElementById("result");result.innerHTML="";
+ const title=document.createElement("h3");title.textContent="टेस्ट जमा हो गया!";
+ const scoreLine=document.createElement("div");scoreLine.className="score";scoreLine.textContent=score+" / "+currentQuiz.length;
+ const percentLine=document.createElement("p");percentLine.textContent="आपका स्कोर: "+percent+"%";
+ const feedback=document.createElement("p");feedback.textContent=percent>=80?"बहुत बढ़िया! ऐसे ही अभ्यास जारी रखो।":percent>=50?"अच्छा प्रयास! गलत उत्तरों को दोबारा पढ़ो।":"कोई बात नहीं—नोट्स पढ़ो और फिर से कोशिश करो।";
+ const list=document.createElement("ul");details.forEach(d=>{const li=document.createElement("li");li.textContent=d;list.appendChild(li);});
+ result.append(title,scoreLine,percentLine,feedback,list);result.classList.add("show");result.scrollIntoView({behavior:"smooth",block:"nearest"});
+});
+document.getElementById("resetQuiz").addEventListener("click",()=>{document.getElementById("quizForm").reset();document.getElementById("result").classList.remove("show");loadQuiz();});
+document.getElementById("year").textContent=new Date().getFullYear();
+loadQuiz();
 </script>
- <section id="subjects">
-  <h2>कक्षा 10 के सभी विषय</h2>
-
-  <h3>गणित</h3>
-  <p>अध्यायवार नोट्स और प्रश्न-उत्तर जल्द यहाँ जोड़ेंगे।</p>
-
-  <h3>विज्ञान</h3>
-  <p>विज्ञान के अध्याय और नोट्स।</p>
-
-  <h3>सामाजिक विज्ञान</h3>
-  <p>इतिहास, भूगोल, राजनीति विज्ञान और अर्थशास्त्र।</p>
-
-  <h3>हिंदी</h3>
-  <p>पाठ, व्याकरण और प्रश्न-उत्तर।</p>
-
-  <h3>अंग्रेज़ी</h3>
-  <p>पाठों के सारांश और प्रश्न-उत्तर।</p>
- </section> </body>
+</body>
   </html>
   
