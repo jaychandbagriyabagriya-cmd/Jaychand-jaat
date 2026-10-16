@@ -76,7 +76,76 @@ document.getElementById("content").innerHTML=`
   <p><b>उत्तर:</b> 2</p>
   <p><b>प्रश्न:</b> x − 3 का शून्यक क्या है?</p>
   <p><b>उत्तर:</b> 3, क्योंकि 3 − 3 = 0।</p>
+</div> 
+<!-- अध्याय 2 का ऑनलाइन टेस्ट -->
+<div style="border:2px solid #2563eb; padding:15px; margin:15px 0; border-radius:12px;">
+  <h3>📝 अध्याय 2 — बहुपद टेस्ट</h3>
+  <p>हर प्रश्न का उत्तर लिखो। सही उत्तर पर 1 अंक मिलेगा। कुल अंक: 5</p>
+
+  <form id="polynomialTest">
+    <p>1. 5x² + 2x + 1 की घात कितनी है?</p>
+    <input id="q1" type="text" placeholder="अपना उत्तर लिखें" required>
+
+    <p>2. x − 4 का शून्यक क्या है?</p>
+    <input id="q2" type="text" placeholder="अपना उत्तर लिखें" required>
+
+    <p>3. 2x³ + 1 में x³ का गुणांक क्या है?</p>
+    <input id="q3" type="text" placeholder="अपना उत्तर लिखें" required>
+
+    <p>4. क्या 7 एक परिमेय संख्या है? (हाँ/नहीं)</p>
+    <input id="q4" type="text" placeholder="अपना उत्तर लिखें" required>
+
+    <p>5. x² − 9 का गुणनखंड रूप लिखो।</p>
+    <input id="q5" type="text" placeholder="अपना उत्तर लिखें" required>
+
+    <br><br>
+    <button type="submit">टेस्ट जमा करें</button>
+  </form>
+
+  <div id="testResult" style="display:none; margin-top:15px;">
+    <h3 id="score"></h3>
+    <p id="feedback"></p>
+    <button type="button" onclick="document.getElementById('polynomialTest').reset(); document.getElementById('testResult').style.display='none';">
+      दोबारा टेस्ट दें
+    </button>
+  </div>
 </div>
+
+<script>
+document.getElementById('polynomialTest').addEventListener('submit', function(e) {
+  e.preventDefault();
+
+  const answers = [
+    ['2'],
+    ['4'],
+    ['2'],
+    ['haan', 'han', 'yes', 'हाँ', 'हां'],
+    ['(x-3)(x+3)', '(x+3)(x-3)', 'x²-9', 'x^2-9']
+  ];
+
+  let score = 0;
+
+  for (let i = 1; i <= 5; i++) {
+    let userAnswer = document.getElementById('q' + i).value
+      .trim().toLowerCase().replace(/\s/g, '');
+
+    if (answers[i - 1].includes(userAnswer)) {
+      score++;
+    }
+  }
+
+  document.getElementById('score').textContent =
+    'आपके अंक: ' + score + ' / 5';
+
+  document.getElementById('feedback').textContent =
+    score === 5 ? 'शानदार! सभी उत्तर सही हैं।' :
+    score >= 3 ? 'अच्छा प्रयास! नोट्स दोबारा पढ़कर फिर टेस्ट दो।' :
+    'कोई बात नहीं! नोट्स पढ़ो और दोबारा प्रयास करो।';
+
+  document.getElementById('testResult').style.display = 'block';
+});
+</script>
+
 
 <!-- अध्याय 3: दो चरों वाले रैखिक समीकरण युग्म -->
 <button type="button" onclick="document.getElementById('chapter3').style.display='block';">
